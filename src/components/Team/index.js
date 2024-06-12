@@ -1,19 +1,22 @@
 import Player from "../Player";
 import "./Team.css"
 
-const Team = (props) => {
+const Team = ({team, players, aoDeletar, changeColor}) => {
     return (
-        props.players.length > 0 && <section className="team" style={{ backgroundColor: props.primaryColor }}>
-            <h3 style={{ borderColor: props.tertiaryColor, color: props.secondaryColor }}>{ props.team }</h3>
+        players.length > 0 && <section className="team" style={{ backgroundColor: team.primaryColor }}>
+            <input value={team.tertiaryColor} onChange={ event => changeColor(team.id, event.target.value) } type="color" className="input-cor" />
+            <h3 style={{ borderColor: team.tertiaryColor, color: team.secondaryColor }}>{ team.name }</h3>
             <div className="players">
-                { props.players.map(player => <Player 
-                                                    key={ player.nome } 
+                { players.map((player, index) => <Player 
+                                                    key={ index } 
                                                     name={ player.nome } 
                                                     role={ player.cargo } 
                                                     image={ player.imagem}
-                                                    primaryColor={ props.primaryColor }
-                                                    secondaryColor={ props.secondaryColor }
-                                                    tertiaryColor={ props.tertiaryColor } />)}
+                                                    player={ player }
+                                                    primaryColor={ team.primaryColor }
+                                                    secondaryColor={ team.secondaryColor }
+                                                    tertiaryColor={ team.tertiaryColor }
+                                                    aoDeletar={ aoDeletar } />)}
             </div>
         </section>
     )
