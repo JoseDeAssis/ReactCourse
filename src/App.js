@@ -165,6 +165,13 @@ function App() {
     }))
   }
 
+  function favoritePlayer(id) {
+    setPlayer(players.map(player => {
+      if(player.id === id) player.favorite = !player.favorite;
+      return player;
+    }))
+  }
+
   return (
     <div className="App">
       <Banner />
@@ -179,6 +186,7 @@ function App() {
               key = { index }
               team = { team }
               aoDeletar={ deletePlayer }
+              aoFavoritar={ favoritePlayer }
               players = { players.filter(player => player.time === team.name) }    
               changeColor = { updateTeamColor }     
               />

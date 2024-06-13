@@ -1,7 +1,7 @@
 import Player from "../Player";
 import "./Team.css"
 
-const Team = ({team, players, aoDeletar, changeColor}) => {
+const Team = ({team, players, aoDeletar, changeColor, aoFavoritar}) => {
     return (
         players.length > 0 && <section className="team" style={{ backgroundColor: team.primaryColor }}>
             <input value={team.tertiaryColor} onChange={ event => changeColor(team.id, event.target.value) } type="color" className="input-cor" />
@@ -16,7 +16,8 @@ const Team = ({team, players, aoDeletar, changeColor}) => {
                                                     primaryColor={ team.primaryColor }
                                                     secondaryColor={ team.secondaryColor }
                                                     tertiaryColor={ team.tertiaryColor }
-                                                    aoDeletar={ aoDeletar } />)}
+                                                    aoDeletar={ aoDeletar }
+                                                    aoFavoritar={ aoFavoritar } />)}
             </div>
         </section>
     )

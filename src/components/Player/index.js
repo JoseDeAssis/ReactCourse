@@ -1,7 +1,17 @@
-import { AiFillCloseCircle } from 'react-icons/ai';
+import { AiFillCloseCircle, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import "./Player.css"
 
-const Player = ({ player, primaryColor, secondaryColor, tertiaryColor, aoDeletar }) => {
+const Player = ({ player, primaryColor, secondaryColor, tertiaryColor, aoDeletar, aoFavoritar }) => {
+
+    const propsFavorite = {
+        size: 25,
+        onClick: favorite
+    }
+
+    function favorite() {
+        aoFavoritar(player.id);
+    }
+
     return (
         <div className="player">
             <AiFillCloseCircle 
@@ -15,6 +25,11 @@ const Player = ({ player, primaryColor, secondaryColor, tertiaryColor, aoDeletar
             <div className="playerFooter">
                 <h4>{ player.nome }</h4>
                 <h5>{ player.cargo }</h5>
+                <div className='favorite'>
+                    {player.favorite ? 
+                        <AiFillHeart { ...propsFavorite } color='#ff0000'/> : 
+                        <AiOutlineHeart { ...propsFavorite }/>}
+                </div>
             </div>
         </div>
     )
